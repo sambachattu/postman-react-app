@@ -5,16 +5,19 @@
 ### Option 1: Local Development
 
 1. **Navigate to the project directory:**
+
    ```bash
    cd api-tester-app
    ```
 
 2. **Install dependencies:**
+
    ```bash
    npm install
    ```
 
 3. **Start the development server:**
+
    ```bash
    npm run dev
    ```
@@ -25,32 +28,31 @@
 ### Option 2: Docker Deployment
 
 1. **Navigate to the project directory:**
+
    ```bash
    cd api-tester-app
    ```
 
-2. **Using Docker Compose (Recommended):**
-   ```bash
-   docker-compose up -d
-   ```
+2. **Or using Docker directly:**
 
-3. **Or using Docker directly:**
    ```bash
    docker build -t api-tester-app .
-   docker run -p 3000:80 api-tester-app
+   docker run -p 3000:3000 api-tester-app
    ```
 
-4. **Access the application:**
+3. **Access the application:**
    Open `http://localhost:3000` in your browser
 
 ### Option 3: Production Build
 
 1. **Build the application:**
+
    ```bash
    npm run build
    ```
 
 2. **Preview the build:**
+
    ```bash
    npm run preview
    ```
@@ -61,21 +63,17 @@
 ## Troubleshooting
 
 ### Port 3000 is already in use
-Change the port in `vite.config.js` or `docker-compose.yml`
 
-### Docker build fails
-Make sure Docker is installed and running:
-```bash
-docker --version
-docker-compose --version
-```
+Change the port in `vite.config.js`
+
+````
 
 ### npm install fails
 Try clearing npm cache:
 ```bash
 npm cache clean --force
 npm install
-```
+````
 
 ## Next Steps
 
