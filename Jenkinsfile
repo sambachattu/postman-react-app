@@ -1,30 +1,32 @@
 pipeline {
-    agent {
-        docker {
-            image 'node:18'
-        }
-    }
+    agent any
 
     stages {
-        stage('Install Dependencies') {
+        stage('Checkout') {
             steps {
-                sh 'npm install'
+                checkout scm
             }
         }
 
-        stage('Build') {
+        stage('Build Docker Image') {
             steps {
-                sh 'npm run build'
+                sh 'docker build -t postman-react-app .'
+            }
+        }
+
+        stage('Run Container (Test)') {
+            steps {
+                sh 'docker run -d -p 3001:80 --name react-test postman-react-app'
             }
         }
     }
 
     post {
         success {
-            echo 'Build Successful 🚀'
+            echo 'Docker build successful 🚀'
         }
         failure {
-            echo 'Build Failed ❌'
+            echo 'Build failed ❌'
         }
     }
 }
