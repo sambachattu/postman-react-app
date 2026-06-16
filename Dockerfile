@@ -2,10 +2,15 @@ FROM node:18-alpine
 
 WORKDIR /app
 
-COPY package*.json ./
+RUN chown -R node:node /app
+
+COPY --chown=node:node package*.json ./
+
+USER node
+
 RUN npm install
 
-COPY . .
+COPY --chown=node:node . .
 
 EXPOSE 3000
 
