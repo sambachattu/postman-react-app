@@ -1,17 +1,25 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Copy, Download, Clock, CheckCircle2, XCircle, AlertCircle, Send } from 'lucide-react';
 import './ResponseViewer.css';
 
 const ResponseViewer = ({ response, loading }) => {
+  const responseSize = useMemo(() =>
+    response && !response.error ? new Blob([JSON.stringify(response.data)]).size : 0,
+  [response]);
+
+  const formattedData = useMemo(() =>
+    response && !response.error ? JSON.stringify(response.data, null, 2) : '',
+  [response]);
+
   const copyResponse = () => {
     if (response && !response.error) {
-      navigator.clipboard.writeText(JSON.stringify(response.data, null, 2));
+      navigator.clipboard.writeText(formattedData);
     }
   };
 
   const downloadResponse = () => {
     if (response && !response.error) {
-      const blob = new Blob([JSON.stringify(response.data, null, 2)], { type: 'application/json' });
+      const blob = new Blob([formattedData], { type: 'application/json' });
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
@@ -82,14 +90,14 @@ const ResponseViewer = ({ response, loading }) => {
               </div>
               {!response.error && (
                 <div className="meta-item">
-                  Size: {new Blob([JSON.stringify(response.data)]).size} bytes
+                  Size: {responseSize} bytes
                 </div>
               )}
             </div>
             <pre className="response-content">
               {response.error 
                 ? response.message 
-                : JSON.stringify(response.data, null, 2)
+                : formattedData
               }
             </pre>
           </>
