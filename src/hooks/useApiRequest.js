@@ -3,7 +3,6 @@ import { useState } from 'react';
 export const useApiRequest = () => {
   const [response, setResponse] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [history, setHistory] = useState([]);
 
   const sendRequest = async (request) => {
     setLoading(true);
@@ -47,12 +46,6 @@ export const useApiRequest = () => {
       };
 
       setResponse(responseData);
-      setHistory([{
-        id: Date.now().toString(),
-        request: { ...request },
-        response: responseData,
-        timestamp: new Date().toISOString()
-      }, ...history.slice(0, 19)]);
 
     } catch (error) {
       setResponse({
@@ -69,7 +62,6 @@ export const useApiRequest = () => {
   return {
     response,
     loading,
-    history,
     sendRequest
   };
 };
