@@ -25,7 +25,18 @@ export const useApiRequest = () => {
         options.body = request.body;
       }
 
-      const res = await fetch(request.url, options);
+      let parsedUrl;
+      try {
+        parsedUrl = new URL(request.url, window.location.origin);
+      } catch (err) {
+        throw new Error('Invalid URL format');
+      }
+
+      if (parsedUrl.protocol !== 'http:' && parsedUrl.protocol !== 'https:') {
+        throw new Error('Invalid URL protocol. Only HTTP and HTTPS are supported.');
+      }
+
+      const res = await fetch(parsedUrl.toString(), options);
       const duration = Date.now() - startTime;
       
       let data;
