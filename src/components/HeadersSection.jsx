@@ -26,6 +26,7 @@ const HeadersSection = ({ headers, onUpdateHeaders }) => {
             className="checkbox"
             checked={header.enabled}
             onChange={(e) => updateHeader(index, 'enabled', e.target.checked)}
+            aria-label={`Enable header ${header.key || 'new header'}`}
           />
           <input
             type="text"
@@ -33,6 +34,7 @@ const HeadersSection = ({ headers, onUpdateHeaders }) => {
             placeholder="Key"
             value={header.key}
             onChange={(e) => updateHeader(index, 'key', e.target.value)}
+            aria-label={`Header key ${index + 1}`}
           />
           <input
             type="text"
@@ -40,8 +42,9 @@ const HeadersSection = ({ headers, onUpdateHeaders }) => {
             placeholder="Value"
             value={header.value}
             onChange={(e) => updateHeader(index, 'value', e.target.value)}
+            aria-label={`Header value ${index + 1}`}
           />
-          <button className="icon-btn" onClick={() => removeHeader(index)}>
+          <button className="icon-btn" onClick={() => removeHeader(index)} aria-label="Remove header" title="Remove header">
             <Trash2 size={16} />
           </button>
         </div>
