@@ -82,7 +82,7 @@ const ResponseViewer = ({ response, loading }) => {
               </div>
               {!response.error && (
                 <div className="meta-item">
-                  Size: {new Blob([JSON.stringify(response.data)]).size} bytes
+                  Size: {response.size} bytes
                 </div>
               )}
             </div>
