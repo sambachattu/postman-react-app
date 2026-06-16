@@ -42,6 +42,7 @@ export const useApiRequest = () => {
         statusText: res.statusText,
         headers: Object.fromEntries(res.headers.entries()),
         data,
+        size: data ? new Blob([JSON.stringify(data)]).size : 0,
         duration,
         timestamp: new Date().toISOString()
       };
