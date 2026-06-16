@@ -3,7 +3,6 @@ import { useState } from 'react';
 export const useApiRequest = () => {
   const [response, setResponse] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [history, setHistory] = useState([]);
 
   const sendRequest = async (request) => {
     setLoading(true);
@@ -25,7 +24,18 @@ export const useApiRequest = () => {
         options.body = request.body;
       }
 
-      const res = await fetch(request.url, options);
+      let parsedUrl;
+      try {
+        parsedUrl = new URL(request.url, window.location.origin);
+      } catch (err) {
+        throw new Error('Invalid URL format');
+      }
+
+      if (parsedUrl.protocol !== 'http:' && parsedUrl.protocol !== 'https:') {
+        throw new Error('Invalid URL protocol. Only HTTP and HTTPS are supported.');
+      }
+
+      const res = await fetch(parsedUrl.toString(), options);
       const duration = Date.now() - startTime;
       
       let data;
@@ -47,12 +57,6 @@ export const useApiRequest = () => {
       };
 
       setResponse(responseData);
-      setHistory([{
-        id: Date.now().toString(),
-        request: { ...request },
-        response: responseData,
-        timestamp: new Date().toISOString()
-      }, ...history.slice(0, 19)]);
 
     } catch (error) {
       setResponse({
@@ -69,7 +73,6 @@ export const useApiRequest = () => {
   return {
     response,
     loading,
-    history,
     sendRequest
   };
 };
