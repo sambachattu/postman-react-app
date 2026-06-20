@@ -14,6 +14,7 @@ const RequestBuilder = ({ request, onUpdateRequest, onSendRequest, loading }) =>
       <input
         type="text"
         className="request-name-input"
+        aria-label="Request name"
         value={request.name}
         onChange={(e) => onUpdateRequest({ name: e.target.value })}
         placeholder="Request Name"
@@ -22,6 +23,7 @@ const RequestBuilder = ({ request, onUpdateRequest, onSendRequest, loading }) =>
       <div className="url-bar">
         <select
           className="method-select"
+          aria-label="Request method"
           value={request.method}
           onChange={(e) => onUpdateRequest({ method: e.target.value })}
         >
@@ -36,6 +38,7 @@ const RequestBuilder = ({ request, onUpdateRequest, onSendRequest, loading }) =>
         <input
           type="text"
           className="url-input"
+          aria-label="Request URL"
           value={request.url}
           onChange={(e) => onUpdateRequest({ url: e.target.value })}
           placeholder="https://api.example.com/endpoint"

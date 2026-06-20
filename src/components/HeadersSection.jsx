@@ -24,6 +24,7 @@ const HeadersSection = ({ headers, onUpdateHeaders }) => {
           <input
             type="checkbox"
             className="checkbox"
+            aria-label="Enable header"
             checked={header.enabled}
             onChange={(e) => updateHeader(index, 'enabled', e.target.checked)}
           />
@@ -31,6 +32,7 @@ const HeadersSection = ({ headers, onUpdateHeaders }) => {
             type="text"
             className="header-input"
             placeholder="Key"
+            aria-label="Header key"
             value={header.key}
             onChange={(e) => updateHeader(index, 'key', e.target.value)}
           />
@@ -38,10 +40,11 @@ const HeadersSection = ({ headers, onUpdateHeaders }) => {
             type="text"
             className="header-input"
             placeholder="Value"
+            aria-label="Header value"
             value={header.value}
             onChange={(e) => updateHeader(index, 'value', e.target.value)}
           />
-          <button className="icon-btn" onClick={() => removeHeader(index)}>
+          <button className="icon-btn" aria-label="Remove header" title="Remove header" onClick={() => removeHeader(index)}>
             <Trash2 size={16} />
           </button>
         </div>
