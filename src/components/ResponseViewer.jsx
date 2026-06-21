@@ -2,6 +2,16 @@ import React from 'react';
 import { Copy, Download, Clock, CheckCircle2, XCircle, AlertCircle, Send } from 'lucide-react';
 import './ResponseViewer.css';
 
+const getStatusConfig = (status) => {
+  if (status >= 200 && status < 300) {
+    return { className: 'success', Icon: CheckCircle2 };
+  }
+  if (status >= 400) {
+    return { className: 'error', Icon: XCircle };
+  }
+  return { className: 'warning', Icon: AlertCircle };
+};
+
 const ResponseViewer = ({ response, loading }) => {
   const copyResponse = () => {
     if (response && !response.error) {
@@ -37,21 +47,15 @@ const ResponseViewer = ({ response, loading }) => {
       <div className="response-header">
         <div className="response-title">
           Response
-          {response && !response.error && (
-            <span className={`status-badge ${
-              response.status >= 200 && response.status < 300 ? 'success' :
-              response.status >= 400 ? 'error' : 'warning'
-            }`}>
-              {response.status >= 200 && response.status < 300 ? (
-                <CheckCircle2 size={14} />
-              ) : response.status >= 400 ? (
-                <XCircle size={14} />
-              ) : (
-                <AlertCircle size={14} />
-              )}
-              {response.status} {response.statusText}
-            </span>
-          )}
+          {response && !response.error && (() => {
+            const { className, Icon } = getStatusConfig(response.status);
+            return (
+              <span className={`status-badge ${className}`}>
+                <Icon size={14} />
+                {response.status} {response.statusText}
+              </span>
+            );
+          })()}
           {response && response.error && (
             <span className="status-badge error">
               <XCircle size={14} />
