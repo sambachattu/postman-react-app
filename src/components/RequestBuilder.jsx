@@ -44,6 +44,7 @@ const RequestBuilder = ({ request, onUpdateRequest, onSendRequest, loading }) =>
           className="send-btn"
           onClick={onSendRequest}
           disabled={loading || !request.url}
+          title={!request.url ? "Enter a URL to send request" : "Send request"}
         >
           {loading ? <span className="spinner" /> : <Send size={18} />}
           Send
