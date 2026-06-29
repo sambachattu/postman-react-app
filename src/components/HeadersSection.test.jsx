@@ -82,8 +82,8 @@ describe('HeadersSection', () => {
   it('calls onUpdateHeaders without the removed header when the trash button is clicked', async () => {
     render(<HeadersSection headers={defaultHeaders} onUpdateHeaders={mockOnUpdateHeaders} />);
 
-    const deleteButtons = screen.getAllByRole('button', { name: '' }); // Trash icons don't have text
-    // The last button is '+ Add Header'. The ones before are the trash icons.
+    const deleteButtons = screen.getAllByRole('button', { name: 'Remove header' });
+
     await userEvent.click(deleteButtons[0]);
 
     expect(mockOnUpdateHeaders).toHaveBeenCalledTimes(1);
