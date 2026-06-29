@@ -1,0 +1,3 @@
+## 2024-05-18 - Missing Accessibility Labels Creating Fragile Tests
+**Learning:** Icon-only buttons lacking `aria-label` attributes aren't just an accessibility issue; they can lead to highly fragile tests. In `HeadersSection.test.jsx`, the test for the delete button explicitly queried using `screen.getAllByRole('button', { name: '' })` because the trash icon had no label. This couples the test to the *absence* of accessibility.
+**Action:** When adding ARIA labels to icon-only buttons, always check existing test files for queries targeting empty names (`name: ''`) or brittle DOM index queries, and update them to use the newly added robust `aria-label`.
