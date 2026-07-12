@@ -1,0 +1,3 @@
+## 2024-03-24 - Missing ARIA labels on icon-only buttons
+**Learning:** Many interactive icon-only buttons in the application (like delete, remove, copy, and download actions) were lacking `aria-label` attributes, which makes them inaccessible to screen reader users. While some had `title` attributes for tooltips, accessibility requires `aria-label`.
+**Action:** Added both `aria-label` and `title` attributes to icon-only buttons across `Sidebar.jsx`, `HeadersSection.jsx`, and `ResponseViewer.jsx` to ensure they are accessible to screen readers and provide hover context for mouse users. Always include these attributes for icon-only interactive elements.
