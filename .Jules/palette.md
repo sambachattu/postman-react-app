@@ -1,0 +1,3 @@
+## 2026-07-15 - Missing Accessibility Attributes on Icon-Only Buttons
+**Learning:** Found an app-wide pattern where icon-only buttons (like delete, remove header, copy, and download actions) were lacking proper `aria-label` attributes for screen readers and `title` attributes for mouse hover tooltips. While some had simple `title` attributes, they missed the accessibility `aria-label`.
+**Action:** Implemented `aria-label` and `title` on these icon-only buttons to ensure they are accessible via screen readers and provide helpful tooltips on hover. When developing new icon-only buttons, always include both attributes.
