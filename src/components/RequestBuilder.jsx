@@ -17,6 +17,8 @@ const RequestBuilder = ({ request, onUpdateRequest, onSendRequest, loading }) =>
         value={request.name}
         onChange={(e) => onUpdateRequest({ name: e.target.value })}
         placeholder="Request Name"
+        aria-label="Request Name"
+        title="Request Name"
       />
 
       <div className="url-bar">
@@ -24,6 +26,8 @@ const RequestBuilder = ({ request, onUpdateRequest, onSendRequest, loading }) =>
           className="method-select"
           value={request.method}
           onChange={(e) => onUpdateRequest({ method: e.target.value })}
+          aria-label="HTTP Method"
+          title="HTTP Method"
         >
           <option>GET</option>
           <option>POST</option>
@@ -39,11 +43,15 @@ const RequestBuilder = ({ request, onUpdateRequest, onSendRequest, loading }) =>
           value={request.url}
           onChange={(e) => onUpdateRequest({ url: e.target.value })}
           placeholder="https://api.example.com/endpoint"
+          aria-label="Request URL"
+          title="Request URL"
         />
         <button
           className="send-btn"
           onClick={onSendRequest}
           disabled={loading || !request.url}
+          aria-label="Send Request"
+          title="Send Request"
         >
           {loading ? <span className="spinner" /> : <Send size={18} />}
           Send
