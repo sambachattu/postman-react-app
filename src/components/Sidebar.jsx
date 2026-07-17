@@ -6,7 +6,7 @@ const Sidebar = ({ requests, activeRequestId, onSelectRequest, onNewRequest, onD
   return (
     <div className="sidebar">
       <div className="sidebar-header">
-        <button className="new-request-btn" onClick={onNewRequest}>
+        <button className="new-request-btn" onClick={onNewRequest} aria-label="New Request" title="New Request">
           <Plus size={18} />
           New Request
         </button>
@@ -29,6 +29,8 @@ const Sidebar = ({ requests, activeRequestId, onSelectRequest, onNewRequest, onD
                   e.stopPropagation();
                   onDeleteRequest(request.id);
                 }}
+                aria-label={`Delete ${request.name} request`}
+                title={`Delete ${request.name} request`}
               >
                 <Trash2 size={16} />
               </button>
