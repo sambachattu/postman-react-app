@@ -1,0 +1,3 @@
+## 2024-08-01 - Missing ARIA labels on icon-only buttons
+**Learning:** The application heavily relies on Lucide icons for UI actions (delete, copy, download) but previously omitted accessible names and tooltips, making them completely opaque to screen readers.
+**Action:** Always include both an `aria-label` and a `title` attribute for icon-only buttons to guarantee keyboard and screen reader accessibility, and update related `testing-library` queries to target the new names.
