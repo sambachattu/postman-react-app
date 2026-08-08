@@ -1,0 +1,3 @@
+## 2024-03-20 - Adding ARIA labels requires test updates
+**Learning:** When adding `aria-label` attributes to icon-only buttons for accessibility, tests that query for these buttons based on an empty name (e.g., `screen.getAllByRole('button', { name: '' })`) will fail because the buttons now have an accessible name.
+**Action:** Always verify and update associated tests to match the new accessible name (e.g., `screen.getAllByRole('button', { name: 'Remove header' })`) when improving component accessibility.
