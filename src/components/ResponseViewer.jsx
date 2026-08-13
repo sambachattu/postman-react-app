@@ -62,10 +62,10 @@ const ResponseViewer = ({ response, loading }) => {
         <div className="response-actions">
           {response && !response.error && (
             <>
-              <button className="icon-btn" onClick={copyResponse} title="Copy">
+              <button className="icon-btn" aria-label="Copy response" title="Copy response" onClick={copyResponse}>
                 <Copy size={18} />
               </button>
-              <button className="icon-btn" onClick={downloadResponse} title="Download">
+              <button className="icon-btn" aria-label="Download response" title="Download response" onClick={downloadResponse}>
                 <Download size={18} />
               </button>
             </>
