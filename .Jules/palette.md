@@ -1,0 +1,3 @@
+## YYYY-MM-DD - Missing aria-labels on icon-only buttons
+**Learning:** Icon-only buttons (like Trash icons) across the app lack `aria-label` attributes (and `title` attributes), and test files were querying them with empty strings (`{ name: '' }`), which completely hides the accessibility issue.
+**Action:** Always verify that icon-only buttons have accessible names, and ensure tests assert against those accessible names rather than ignoring them.
