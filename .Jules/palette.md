@@ -1,0 +1,3 @@
+## 2025-03-01 - Missing ARIA labels on icon buttons
+**Learning:** Found an anti-pattern where tests query icon-only buttons using `{ name: '' }` due to missing `aria-label` attributes. This hides accessibility issues.
+**Action:** Always ensure icon-only buttons have both an `aria-label` for screen readers and a `title` for mouse hover tooltips, and update corresponding tests to use the accessible name.
