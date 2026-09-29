@@ -1,0 +1,3 @@
+## 2024-05-18 - Added Accessibility Attributes to Icon-only Buttons
+**Learning:** Found an anti-pattern in the test suite `screen.getAllByRole('button', { name: '' })` indicating that UI components lack accessible names. Adding `aria-label`s directly improves accessibility and fixes brittle query anti-patterns.
+**Action:** Applied `aria-label` and `title` to all icon-only buttons (`Trash2`, `Copy`, `Download`) and updated the corresponding tests to check for the proper accessible name.
