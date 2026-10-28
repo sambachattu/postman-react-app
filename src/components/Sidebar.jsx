@@ -25,6 +25,8 @@ const Sidebar = ({ requests, activeRequestId, onSelectRequest, onNewRequest, onD
             {requests.length > 1 && (
               <button
                 className="delete-btn"
+                title="Delete request"
+                aria-label="Delete request"
                 onClick={(e) => {
                   e.stopPropagation();
                   onDeleteRequest(request.id);
