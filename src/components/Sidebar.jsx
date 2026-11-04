@@ -29,6 +29,8 @@ const Sidebar = ({ requests, activeRequestId, onSelectRequest, onNewRequest, onD
                   e.stopPropagation();
                   onDeleteRequest(request.id);
                 }}
+                aria-label="Delete request"
+                title="Delete request"
               >
                 <Trash2 size={16} />
               </button>
