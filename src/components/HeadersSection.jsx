@@ -41,7 +41,12 @@ const HeadersSection = ({ headers, onUpdateHeaders }) => {
             value={header.value}
             onChange={(e) => updateHeader(index, 'value', e.target.value)}
           />
-          <button className="icon-btn" onClick={() => removeHeader(index)}>
+          <button
+            className="icon-btn"
+            onClick={() => removeHeader(index)}
+            aria-label="Remove header"
+            title="Remove header"
+          >
             <Trash2 size={16} />
           </button>
         </div>
