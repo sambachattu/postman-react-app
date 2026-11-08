@@ -1,0 +1,3 @@
+## YYYY-MM-DD - Brittle React Testing Library Queries Hide Missing Accessible Names
+**Learning:** Found an anti-pattern in tests where icon-only buttons were queried using `screen.getAllByRole('button', { name: '' })`. This practice masks accessibility issues because the test explicitly expects the button to have no accessible name, passing even when screen reader users are left with an unannounced element.
+**Action:** Always verify that elements like Lucide icons have both `aria-label` (for screen readers) and `title` (for mouse hover). Update any corresponding RTL tests to assert on these meaningful accessible names instead of empty strings.
